@@ -21,6 +21,11 @@ public class Stack<T> {
         Node<T> node = new Node<>(item);
 
         // LIFO
+
+        // |     |
+        // |  0  | top
+        // |  0  |
+        // |  0  |
         node.next = top; // next -> 다음에 나갈것
         top = node;
 

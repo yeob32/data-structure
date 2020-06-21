@@ -16,4 +16,13 @@ public class Singleton {
 
         return instance;
     }
+
+    // 가장 많이 쓰는 방법.
+    public static class LazyHolder {
+        private static final Singleton instance = new Singleton(); // 클래스 로딩 시점에 한번만 호출
+    }
+
+    public static Singleton getLazyInstance() {
+        return LazyHolder.instance;
+    }
 }

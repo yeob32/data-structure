@@ -17,6 +17,15 @@ public class SingletonTest {
     }
 
     @Test
+    @DisplayName("싱글톤 2")
+    public void singleton2() {
+        Singleton singleton1 = Singleton.getLazyInstance();
+        Singleton singleton2 = Singleton.getLazyInstance();
+
+        Assertions.assertEquals(singleton1, singleton2);
+    }
+
+    @Test
     @DisplayName("싱글톤 아닐 경우")
     public void noneSingleton() {
         NoneSingleton none1 = new NoneSingleton();

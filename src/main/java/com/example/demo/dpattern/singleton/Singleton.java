@@ -22,7 +22,7 @@ public class Singleton {
         private static final Singleton instance = new Singleton(); // 클래스 로딩 시점에 한번만 호출
     }
 
-    public static Singleton getLazyInstance() {
+    public static Singleton getLazyInstance() { // 호출 될 떄 instance 메모리 할당
         return LazyHolder.instance;
     }
 }

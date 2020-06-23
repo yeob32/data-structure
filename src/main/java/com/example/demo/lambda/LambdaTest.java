@@ -11,10 +11,7 @@ public class LambdaTest {
 
     Supplier<String> supplier = () -> "[supplier] Hello World";
     Function<List<String>, String> function = strings -> "[function]" + String.join(" ", strings);
-    Consumer<String> consumer = o -> {
-        System.out.println(o);
-    };
-
+    Consumer<String> consumer = System.out::println;
     Predicate<String> predicate = s -> s.equals("Hello World");
 
     public static void main(String[] args) {
@@ -25,7 +22,6 @@ public class LambdaTest {
         lambdaTest.consumer
                 .andThen(System.out::println)
                 .accept("[consumer] Hello World");
-
         System.out.println(lambdaTest.predicate
                 .or(s -> s.equals("[predicate] Hello World"))
                 .test("[predicate] Hello World"));

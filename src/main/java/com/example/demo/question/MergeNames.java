@@ -5,7 +5,7 @@ import java.util.*;
 public class MergeNames {
 
     public static String[] uniqueNames(String[] names1, String[] names2) {
-        Set<String> set = new HashSet(Arrays.asList(names1));
+        Set<String> set = new HashSet<>(Arrays.asList(names1));
         set.addAll(Arrays.asList(names2));
         return (String[]) set.toArray();
     }

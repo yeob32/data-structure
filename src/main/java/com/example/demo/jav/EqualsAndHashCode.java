@@ -35,7 +35,8 @@ public class EqualsAndHashCode {
         EqualsAndHashCode equalsAndHashCode = new EqualsAndHashCode(1, "hello");
         EqualsAndHashCode equalsAndHashCode2 = new EqualsAndHashCode(1, "hello");
 
-        System.out.println("equals : " + equalsAndHashCode.equals(equalsAndHashCode2));
+        System.out.println("identity : " + (equalsAndHashCode == equalsAndHashCode2));
+        System.out.println("equality : " + equalsAndHashCode.equals(equalsAndHashCode2));
         System.out.println("hashCode : " + equalsAndHashCode.hashCode() + " ,, " + equalsAndHashCode2.hashCode());
 
         Map<EqualsAndHashCode, Object> map = new HashMap<>();

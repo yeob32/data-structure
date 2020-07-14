@@ -1,5 +1,6 @@
 package com.example.demo.question.stringAndArray;
 
+// 중복 문자열 확인
 public class CheckDupStr {
 
     public static void main(String[] args) {

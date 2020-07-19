@@ -2,6 +2,8 @@ package com.example.demo.sort;
 
 import java.util.Arrays;
 
+// 분할정복
+// 안정정렬 -> O(nlogn)
 public class MergeSort {
 
     public static void mergeSort(int[] arr) {
@@ -46,7 +48,7 @@ public class MergeSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = {7, 9, 6, 4, 5, 3, 1, 2, 8};
+        int[] arr = {4,2,3,1,5};
 
         mergeSort(arr);
         System.out.println(Arrays.toString(arr));

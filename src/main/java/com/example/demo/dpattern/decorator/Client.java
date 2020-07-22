@@ -13,15 +13,5 @@ public class Client {
 
         Beverage mocha = new Mocha(beverage);
         System.out.println(mocha);
-
-        try {
-            BufferedReader bufferedReader = new LineNumberReader(new FileReader("/Users/sykim/KWOP_PRD_LOG.sql"));
-            System.out.println(bufferedReader.readLine());
-        } catch (FileNotFoundException e) {
-            System.out.println("ggg");
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 }

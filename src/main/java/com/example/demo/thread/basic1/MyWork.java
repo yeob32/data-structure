@@ -29,8 +29,16 @@ public class MyWork extends Thread {
     public static void main(String[] args) {
         Thread thread = new MyThread("*");
         Thread thread1 = new MyThread("^_^");
+        Thread thread2 = new MyThread("!!");
 
         thread.start();
+        thread2.start();
+
+        try {
+            thread2.join();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         try {
             thread.join();
@@ -45,7 +53,6 @@ public class MyWork extends Thread {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
 
         System.out.println(currentThread().getName() + " - Thread End");
     }

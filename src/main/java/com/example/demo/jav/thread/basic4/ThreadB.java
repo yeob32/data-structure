@@ -1,4 +1,4 @@
-package com.example.demo.thread.basic4;
+package com.example.demo.jav.thread.basic4;
 
 import java.util.stream.IntStream;
 

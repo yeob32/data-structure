@@ -1,4 +1,4 @@
-package com.example.demo.thread.basic3;
+package com.example.demo.jav.thread.basic3;
 
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;

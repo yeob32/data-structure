@@ -1,4 +1,4 @@
-package com.example.demo.lambda.firstClass;
+package com.example.demo.jav.lambda.firstClass;
 
 public class Book {
 

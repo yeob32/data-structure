@@ -1,4 +1,4 @@
-package com.example.demo.thread.basic2;
+package com.example.demo.jav.thread.basic2;
 
 public class MusicPlayer extends Thread {
 

@@ -22,6 +22,7 @@ public class Singleton {
         private static final Singleton instance = new Singleton(); // 클래스 로딩 시점에 한번만 호출
     }
 
+    // 동적바인딩(Dynamic Binding) (런타임시에 성격이 결정) 의 특징을 이용하여 Thread-safe 하면서 성능 뛰어남.
     public static Singleton getLazyInstance() { // 호출 될 떄 instance 메모리 할당
         return LazyHolder.instance;
     }

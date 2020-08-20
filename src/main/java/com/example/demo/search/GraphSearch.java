@@ -1,4 +1,4 @@
-package com.example.demo.structure;
+package com.example.demo.search;
 
 import java.util.LinkedList;
 import java.util.Queue;
@@ -54,8 +54,8 @@ public class GraphSearch {
             Node node = stack.pop();
             for(Node n : node.adjacent) {
                 if(!n.marked) {
-                    n.marked = true;
                     stack.push(n);
+                    n.marked = true;
                 }
             }
 
@@ -75,10 +75,10 @@ public class GraphSearch {
 
         while(!queue.isEmpty()) {
             Node node = queue.remove();
-            for(Node adjacent : node.adjacent) {
-                if(!adjacent.marked) {
-                    adjacent.marked = true;
-                    queue.offer(adjacent);
+            for(Node n : node.adjacent) {
+                if(!n.marked) {
+                    n.marked = true;
+                    queue.offer(n);
                 }
             }
 

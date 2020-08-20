@@ -2,6 +2,8 @@ package com.example.demo.structure;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.EmptyStackException;
 
@@ -33,5 +35,19 @@ public class StackTest {
         Assertions.assertThrows(EmptyStackException.class, stack::pop);
     }
 
+    @ParameterizedTest
+    @ValueSource(strings = {"[{{}}]"})
+    public void sol1(String value) {
+        java.util.Stack<Character> stack = new java.util.Stack<>();
+        for (int i = value.length()-1; i >= 0; i--) {
+            stack.push(value.charAt(i));
+        }
 
+        StringBuilder stringBuilder = new StringBuilder();
+        while(stack.iterator().hasNext()) {
+            stringBuilder.append(stack.pop());
+        }
+
+        Assertions.assertEquals(stringBuilder.toString(), value);
+    }
 }

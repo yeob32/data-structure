@@ -1,4 +1,4 @@
-package com.example.demo.lambda;
+package com.example.demo.jav.lambda;
 
 import java.util.Arrays;
 import java.util.List;

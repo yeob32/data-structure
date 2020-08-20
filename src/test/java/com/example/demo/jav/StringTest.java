@@ -24,11 +24,13 @@ public class StringTest {
      * @param value
      */
     @ParameterizedTest
-    @ValueSource(strings = "this is 111 허허허")
+    @ValueSource(strings = {"this is 111 허허허"})
     public void sum_char_byte(String value) {
-        int sum = value.chars()
-                .map(v -> Character.toString(v).getBytes().length)
-                .sum();
+        int sum = 0;
+        for (int i = 0; i < value.length(); i++) {
+            char v = value.charAt(i);
+            sum += String.valueOf(v).getBytes().length;
+        }
 
         byte[] bytes = value.getBytes();
         System.out.println(bytes.length);

@@ -1,4 +1,4 @@
-package com.example.demo.sort;
+package com.example.demo.search;
 
 import java.util.stream.IntStream;
 

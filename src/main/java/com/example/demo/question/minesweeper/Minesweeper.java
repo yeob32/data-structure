@@ -72,21 +72,35 @@ public class Minesweeper {
         }
     }
 
+    void printMineBag() {
+        for (int i = 0; i < x; i++) {
+            for (int j = 0; j < y; j++) {
+                Cell cell = cells[i][j];
+
+                if(cell.mine) {
+                    System.out.println(i + ": " + j + " - " + Arrays.toString(cell.nearCells.toArray()));
+                }
+
+            }
+            System.out.println("");
+        }
+    }
+
     void open() {
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
                 Cell cell = cells[i][j];
 
-
                 // x-1,y-1 - x-1,y - x-1,y+1
                 // x,y-1             x,y+1
                 // x+1,y-1 - x+1,y - x+1,y+1
 
-
-
                 if(cell.mine) {
                     if(i > 0) {
-                        cell.nearCells.add(cells[i-1][j-1]);
+                        if(j > 0) {
+                            cell.nearCells.add(cells[i-1][j-1]);
+                        }
+
                         cell.nearCells.add(cells[i-1][j]);
                         if(j < y) {
                             cell.nearCells.add(cells[i-1][j+1]);
@@ -95,21 +109,21 @@ public class Minesweeper {
 
                     if(j > 0) {
                         cell.nearCells.add(cells[i][j-1]);
-                        cell.nearCells.add(cells[i+1][j-1]);
+                        if(j < y && i < x) {
+                            cell.nearCells.add(cells[i+1][j-1]);
+                        }
                     }
 
-                    cell.nearCells.add(cells[i][j+1]);
-                    cell.nearCells.add(cells[i+1][j]);
-                    cell.nearCells.add(cells[i+1][j+1]);
+                    if(i < x && y > j) {
+                        cell.nearCells.add(cells[i][j+1]);
+                        cell.nearCells.add(cells[i+1][j]);
+                        cell.nearCells.add(cells[i+1][j+1]);
+                    }
 
-                    if(i > 0 && j >0) {
+                    if(i < x) {
                         cell.nearCells.add(cells[i+1][j]);
                         cell.nearCells.add(cells[i+1][j]);
                     }
-
-
-
-//                    cell.nearCells.add()
                 }
             }
         }
@@ -120,5 +134,6 @@ public class Minesweeper {
         minesweeper.init();
         minesweeper.print();
         minesweeper.open();
+        minesweeper.printMineBag();
     }
 }

@@ -1,6 +1,6 @@
 package com.example.demo.question.minesweeper;
 
-import java.util.*;
+import java.util.Random;
 
 public class Minesweeper {
 
@@ -8,6 +8,8 @@ public class Minesweeper {
     int y;
     int mineCount;
     Cell[][] cells;
+
+    int[][] nearCells = {{-1, -1}, {-1, 0}, {-1, 1}, {0, -1}, {0, 1}, {1, -1}, {1, 0}, {1, 1}};
 
     public Minesweeper(int x, int y, int mineCount) {
         this.x = x;
@@ -20,12 +22,10 @@ public class Minesweeper {
 
         int number;
         boolean mine;
-        List<Cell> nearCells;
 
         public Cell(int number, boolean mine) {
             this.number = number;
             this.mine = mine;
-            this.nearCells = new ArrayList<>();
         }
 
         @Override
@@ -41,10 +41,10 @@ public class Minesweeper {
             }
         }
 
-        shuffle();
+        setUp();
     }
 
-    void shuffle() {
+    void setUp() {
         Random random = new Random();
 
         int temp = mineCount;
@@ -70,59 +70,28 @@ public class Minesweeper {
             }
             System.out.println("");
         }
+        System.out.println("");
     }
 
-    void printMineBag() {
-        for (int i = 0; i < x; i++) {
-            for (int j = 0; j < y; j++) {
-                Cell cell = cells[i][j];
-
-                if(cell.mine) {
-                    System.out.println(i + ": " + j + " - " + Arrays.toString(cell.nearCells.toArray()));
-                }
-
-            }
-            System.out.println("");
-        }
-    }
+    /**
+     * x-1,y-1 - x-1,y - x-1,y+1
+     * x,y-1      *      x,y+1
+     * x+1,y-1 - x+1,y - x+1,y+1
+     */
 
     void open() {
         for (int i = 0; i < x; i++) {
             for (int j = 0; j < y; j++) {
                 Cell cell = cells[i][j];
 
-                // x-1,y-1 - x-1,y - x-1,y+1
-                // x,y-1             x,y+1
-                // x+1,y-1 - x+1,y - x+1,y+1
+                if (cell.mine) {
+                    for (int[] nCell : nearCells) {
+                        int nx = nCell[0] + i;
+                        int ny = nCell[1] + j;
 
-                if(cell.mine) {
-                    if(i > 0) {
-                        if(j > 0) {
-                            cell.nearCells.add(cells[i-1][j-1]);
+                        if (nx > 0 && ny > 0 && x > nx && y > ny) {
+                            cells[nx][ny].number++;
                         }
-
-                        cell.nearCells.add(cells[i-1][j]);
-                        if(j < y) {
-                            cell.nearCells.add(cells[i-1][j+1]);
-                        }
-                    }
-
-                    if(j > 0) {
-                        cell.nearCells.add(cells[i][j-1]);
-                        if(j < y && i < x) {
-                            cell.nearCells.add(cells[i+1][j-1]);
-                        }
-                    }
-
-                    if(i < x && y > j) {
-                        cell.nearCells.add(cells[i][j+1]);
-                        cell.nearCells.add(cells[i+1][j]);
-                        cell.nearCells.add(cells[i+1][j+1]);
-                    }
-
-                    if(i < x) {
-                        cell.nearCells.add(cells[i+1][j]);
-                        cell.nearCells.add(cells[i+1][j]);
                     }
                 }
             }
@@ -130,10 +99,10 @@ public class Minesweeper {
     }
 
     public static void main(String[] args) {
-        Minesweeper minesweeper = new Minesweeper(10, 10, 2);
+        Minesweeper minesweeper = new Minesweeper(10, 10, 10);
         minesweeper.init();
         minesweeper.print();
         minesweeper.open();
-        minesweeper.printMineBag();
+        minesweeper.print();
     }
 }
